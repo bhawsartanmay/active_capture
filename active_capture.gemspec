@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/active_capture/version"
+require_relative "lib/support/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "active_capture"
-  spec.version       = ActiveCapture::VERSION
+  spec.version       = Support::VERSION
   spec.authors       = "Tanmay Bhawsar"
   spec.email         = "bhawsartanmay@gmail.com"
   spec.summary       = "A Ruby on Rails gem for taking and restoring captures of ActiveRecord records with nested associations."

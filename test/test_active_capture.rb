@@ -18,7 +18,7 @@ class ActiveCaptureTest < Minitest::Test
   # Test capturing a user with associated posts and comments
   def test_capture_with_associations
     # Take a capture of the user and their associations
-    ActiveCapture::Capture.take(@user, associations: [:posts, { posts: :comments }])
+    ActiveCapture.take(@user, associations: [:posts, { posts: :comments }])
 
     # Verify that capture files are created
     capture_files = Dir["captures/user/*.json"]
@@ -33,7 +33,7 @@ class ActiveCaptureTest < Minitest::Test
   # Test restoring a user with merge functionality
   def test_restore_with_merge
     # Take a capture of the user and their associations
-    ActiveCapture::Capture.take(@user, associations: [:posts, { posts: :comments }])
+    ActiveCapture.take(@user, associations: [:posts, { posts: :comments }])
     capture_file = Dir["captures/user/*.json"].last
 
     # Modify the post and add a new comment
@@ -41,7 +41,7 @@ class ActiveCaptureTest < Minitest::Test
     new_comment = @post.comments.create!(content: "Another comment")
 
     # Restore the user from the capture file with merge enabled
-    ActiveCapture::Capture.restore(@user, capture_file, merge: true)
+    ActiveCapture.restore(@user, capture_file, merge: true)
 
     # Reload the user and post to verify changes
     @user.reload
